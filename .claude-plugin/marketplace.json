@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "stackhouse",
+  "description": "Official StackHouse plugins for Claude",
+  "owner": {
+    "name": "StackHouse"
+  },
+  "plugins": [
+    {
+      "name": "quizletto",
+      "source": "./plugins/quizletto",
+      "description": "Build quizzes, manage workspaces, and analyze results in Quizletto from Claude.",
+      "category": "productivity",
+      "homepage": "https://www.quizletto.cloud"
+    }
+  ]
+}
