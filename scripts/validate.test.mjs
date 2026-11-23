@@ -12,7 +12,7 @@ const REPO_ROOT = path.resolve(
   ".."
 );
 
-test("stackhouse-cloud/claude-plugins repository passes validation and ships quizletto", async () => {
+test("stackhouse-cloud/claude-plugins repository passes validation and ships quizletto + tixanto + cordo", async () => {
   const result = await validateClaudeMarketplaceRepo(REPO_ROOT);
   assert.deepEqual(result.errors, []);
   assert.equal(result.valid, true);
@@ -32,6 +32,10 @@ test("stackhouse-cloud/claude-plugins repository passes validation and ships qui
   assert.ok(quizlettoEntry, "expected quizletto entry in marketplace.json");
   assert.equal(quizlettoEntry.source, "./plugins/quizletto");
 
+  const tixantoEntry = marketplace.plugins.find((p) => p.name === "tixanto");
+  assert.ok(tixantoEntry, "expected tixanto entry in marketplace.json");
+  assert.equal(tixantoEntry.source, "./plugins/tixanto");
+
   const mcp = JSON.parse(
     await fs.readFile(
       path.join(REPO_ROOT, "plugins", "quizletto", ".mcp.json"),
@@ -41,6 +45,74 @@ test("stackhouse-cloud/claude-plugins repository passes validation and ships qui
   const serverCfg = mcp.mcpServers?.quizletto ?? mcp.quizletto;
   assert.equal(serverCfg?.type, "http");
   assert.equal(serverCfg?.url, "https://api.quizletto.cloud/v1/mcp");
+
+  const tixantoManifest = JSON.parse(
+    await fs.readFile(
+      path.join(
+        REPO_ROOT,
+        "plugins",
+        "tixanto",
+        ".claude-plugin",
+        "plugin.json"
+      ),
+      "utf8"
+    )
+  );
+  assert.equal(
+    tixantoManifest.userConfig,
+    undefined,
+    "tixanto uses OAuth 2.1 and should not require userConfig"
+  );
+
+  const tixantoMcp = JSON.parse(
+    await fs.readFile(
+      path.join(REPO_ROOT, "plugins", "tixanto", ".mcp.json"),
+      "utf8"
+    )
+  );
+  const tixantoCfg = tixantoMcp.mcpServers?.tixanto ?? tixantoMcp.tixanto;
+  assert.equal(tixantoCfg?.type, "http");
+  assert.equal(tixantoCfg?.url, "https://api.tixanto.cloud/v1/mcp/http");
+  assert.equal(
+    tixantoCfg?.headers,
+    undefined,
+    "tixanto uses OAuth 2.1 and should not set static auth headers"
+  );
+
+  const cordoEntry = marketplace.plugins.find((p) => p.name === "cordo");
+  assert.ok(cordoEntry, "expected cordo entry in marketplace.json");
+  assert.equal(cordoEntry.source, "./plugins/cordo");
+
+  const cordoManifest = JSON.parse(
+    await fs.readFile(
+      path.join(
+        REPO_ROOT,
+        "plugins",
+        "cordo",
+        ".claude-plugin",
+        "plugin.json"
+      ),
+      "utf8"
+    )
+  );
+  assert.ok(
+    cordoManifest.userConfig?.api_token?.sensitive,
+    "expected sensitive api_token userConfig"
+  );
+
+  const cordoMcp = JSON.parse(
+    await fs.readFile(
+      path.join(REPO_ROOT, "plugins", "cordo", ".mcp.json"),
+      "utf8"
+    )
+  );
+  const cordoCfg = cordoMcp.mcpServers?.cordo ?? cordoMcp.cordo;
+  assert.equal(cordoCfg?.type, "http");
+  assert.equal(cordoCfg?.url, "https://api.cordo.cloud/mcp");
+  assert.equal(
+    cordoCfg?.headers?.Authorization,
+    "Bearer ${user_config.api_token}"
+  );
 });
 
 test("validator rejects common Claude marketplace pitfalls", async () => {

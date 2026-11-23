@@ -1,0 +1,25 @@
+{
+  "name": "tixanto",
+  "displayName": "Tixanto",
+  "version": "1.0.0",
+  "description": "Work with Tixanto issues, projects, cycles, and comments from Claude.",
+  "author": {
+    "name": "StackHouse",
+    "url": "https://stackhouse.cloud"
+  },
+  "homepage": "https://www.tixanto.cloud",
+  "repository": "https://github.com/stackhouse-cloud/claude-plugins",
+  "license": "MIT",
+  "icon": "./assets/logo.svg",
+  "supportUrl": "https://stackhouse.cloud/contact",
+  "privacyPolicyUrl": "https://stackhouse.cloud/privacy",
+  "termsOfServiceUrl": "https://stackhouse.cloud/terms",
+  "keywords": [
+    "tixanto",
+    "issues",
+    "sprints",
+    "project-management",
+    "mcp",
+    "stackhouse"
+  ]
+}

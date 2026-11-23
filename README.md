@@ -7,6 +7,8 @@ Official [Claude Code](https://code.claude.com) plugin marketplace for [StackHou
 | Plugin | Install ID | Path | Description |
 | --- | --- | --- | --- |
 | [**Quizletto**](./plugins/quizletto) | `quizletto@stackhouse` | `plugins/quizletto` | Build graded and profile quizzes, manage workspaces and candidate links, run test attempts, and analyze results via Quizletto MCP (`https://api.quizletto.cloud/v1/mcp`). |
+| [**Tixanto**](./plugins/tixanto) | `tixanto@stackhouse` | `plugins/tixanto` | Find, create, update, and comment on issues; manage cycles and epics via Tixanto MCP (`https://api.tixanto.cloud/v1/mcp/http`). |
+| [**Cordo**](./plugins/cordo) | `cordo@stackhouse` | `plugins/cordo` | Explore streams, query events, and investigate ops findings via Cordo MCP (`https://api.cordo.cloud/mcp`). |
 
 ## Install in Claude Code
 
@@ -15,6 +17,8 @@ Official [Claude Code](https://code.claude.com) plugin marketplace for [StackHou
 ```sh
 claude plugin marketplace add stackhouse-cloud/claude-plugins
 claude plugin install quizletto@stackhouse
+claude plugin install tixanto@stackhouse
+claude plugin install cordo@stackhouse
 ```
 
 ### Inside an interactive Claude Code session
@@ -22,16 +26,20 @@ claude plugin install quizletto@stackhouse
 ```text
 /plugin marketplace add stackhouse-cloud/claude-plugins
 /plugin install quizletto@stackhouse
+/plugin install tixanto@stackhouse
+/plugin install cordo@stackhouse
 ```
 
-On first use (or via `/mcp`), Claude opens your browser to sign in to Quizletto and approve OAuth 2.1 access.
+On first use: Quizletto and Tixanto open your browser for OAuth 2.1; Cordo prompts for a personal token (also configurable via `/mcp`).
 
 ### Local development & testing
 
-Load the plugin directly during development:
+Load a plugin directly during development:
 
 ```sh
 claude --plugin-dir ./plugins/quizletto
+claude --plugin-dir ./plugins/tixanto
+claude --plugin-dir ./plugins/cordo
 ```
 
 Or validate both the marketplace and plugin manifests strictly:
@@ -41,6 +49,8 @@ node --test scripts/validate.test.mjs
 node scripts/validate.mjs
 claude plugin validate --strict .
 claude plugin validate --profile directory --strict ./plugins/quizletto
+claude plugin validate --profile directory --strict ./plugins/tixanto
+claude plugin validate --profile directory --strict ./plugins/cordo
 ```
 
 ## Repository layout & adding more StackHouse plugins
@@ -52,13 +62,15 @@ claude-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json
 ├── plugins/
-│   └── quizletto/
+│   ├── quizletto/
+│   ├── tixanto/
+│   └── cordo/
 │       ├── .claude-plugin/
 │       │   └── plugin.json
 │       ├── assets/
 │       │   └── logo.svg
 │       ├── skills/
-│       │   └── quizletto/
+│       │   └── cordo/
 │       │       └── SKILL.md
 │       ├── .mcp.json
 │       └── README.md
@@ -67,7 +79,7 @@ claude-plugins/
     └── validate.test.mjs
 ```
 
-Additional StackHouse plugins (such as `plugins/tixanto`, `plugins/dokko`, and `plugins/cordo`) can be added alongside `plugins/quizletto` and registered in `.claude-plugin/marketplace.json`.
+Additional StackHouse plugins (such as `plugins/dokko`) can be added alongside the existing plugins and registered in `.claude-plugin/marketplace.json`.
 
 ## License
 

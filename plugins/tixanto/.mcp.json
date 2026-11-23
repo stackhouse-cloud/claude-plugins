@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tixanto": {
+      "type": "http",
+      "url": "https://api.tixanto.cloud/v1/mcp/http"
+    }
+  }
+}
