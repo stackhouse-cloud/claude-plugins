@@ -30,7 +30,7 @@ claude plugin install cordo@stackhouse
 /plugin install cordo@stackhouse
 ```
 
-On first use: Quizletto and Tixanto open your browser for OAuth 2.1; Cordo prompts for a personal token (also configurable via `/mcp`).
+On first use (or via `/mcp`), Quizletto, Tixanto, and Cordo open your browser for OAuth 2.1 sign-in.
 
 ### Local development & testing
 

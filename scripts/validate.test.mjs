@@ -95,9 +95,10 @@ test("stackhouse-cloud/claude-plugins repository passes validation and ships qui
       "utf8"
     )
   );
-  assert.ok(
-    cordoManifest.userConfig?.api_token?.sensitive,
-    "expected sensitive api_token userConfig"
+  assert.equal(
+    cordoManifest.userConfig,
+    undefined,
+    "cordo uses OAuth 2.1 and should not require userConfig"
   );
 
   const cordoMcp = JSON.parse(
@@ -110,8 +111,9 @@ test("stackhouse-cloud/claude-plugins repository passes validation and ships qui
   assert.equal(cordoCfg?.type, "http");
   assert.equal(cordoCfg?.url, "https://api.cordo.cloud/mcp");
   assert.equal(
-    cordoCfg?.headers?.Authorization,
-    "Bearer ${user_config.api_token}"
+    cordoCfg?.headers,
+    undefined,
+    "cordo uses OAuth 2.1 and should not set static auth headers"
   );
 });
 

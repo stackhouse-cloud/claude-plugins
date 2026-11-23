@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "cordo": {
+      "type": "http",
+      "url": "https://api.cordo.cloud/mcp"
+    }
+  }
+}
