@@ -1,0 +1,26 @@
+{
+  "name": "provenix",
+  "displayName": "Provenix",
+  "version": "1.0.0",
+  "description": "Work the npm quarantine queue, investigate versions and their blast radius, and review packages in Provenix from Claude.",
+  "author": {
+    "name": "StackHouse",
+    "url": "https://stackhouse.cloud"
+  },
+  "homepage": "https://www.provenix.cloud",
+  "repository": "https://github.com/stackhouse-cloud/claude-plugins",
+  "license": "MIT",
+  "icon": "./assets/logo.svg",
+  "supportUrl": "https://stackhouse.cloud/contact",
+  "privacyPolicyUrl": "https://stackhouse.cloud/privacy",
+  "termsOfServiceUrl": "https://stackhouse.cloud/terms",
+  "keywords": [
+    "provenix",
+    "npm",
+    "supply-chain",
+    "security",
+    "dependencies",
+    "mcp",
+    "stackhouse"
+  ]
+}

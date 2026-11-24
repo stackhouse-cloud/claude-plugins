@@ -26,6 +26,13 @@
       "description": "Explore streams, query events, and investigate ops findings in Cordo from Claude.",
       "category": "productivity",
       "homepage": "https://www.cordo.cloud"
+    },
+    {
+      "name": "provenix",
+      "source": "./plugins/provenix",
+      "description": "Work the npm quarantine queue, investigate versions and their blast radius, and review packages in Provenix from Claude.",
+      "category": "security",
+      "homepage": "https://www.provenix.cloud"
     }
   ]
 }

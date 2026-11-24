@@ -9,6 +9,7 @@ Official [Claude Code](https://code.claude.com) plugin marketplace for [StackHou
 | [**Quizletto**](./plugins/quizletto) | `quizletto@stackhouse` | `plugins/quizletto` | Build graded and profile quizzes, manage workspaces and candidate links, run test attempts, and analyze results via Quizletto MCP (`https://api.quizletto.cloud/v1/mcp`). |
 | [**Tixanto**](./plugins/tixanto) | `tixanto@stackhouse` | `plugins/tixanto` | Find, create, update, and comment on issues; manage cycles and epics via Tixanto MCP (`https://api.tixanto.cloud/v1/mcp/http`). |
 | [**Cordo**](./plugins/cordo) | `cordo@stackhouse` | `plugins/cordo` | Explore streams, query events, and investigate ops findings via Cordo MCP (`https://api.cordo.cloud/mcp`). |
+| [**Provenix**](./plugins/provenix) | `provenix@stackhouse` | `plugins/provenix` | Work the npm quarantine queue, investigate versions and their blast radius, and review packages via Provenix MCP (`https://api.provenix.cloud/mcp`). |
 
 ## Install in Claude Code
 
@@ -19,6 +20,7 @@ claude plugin marketplace add stackhouse-cloud/claude-plugins
 claude plugin install quizletto@stackhouse
 claude plugin install tixanto@stackhouse
 claude plugin install cordo@stackhouse
+claude plugin install provenix@stackhouse
 ```
 
 ### Inside an interactive Claude Code session
@@ -28,9 +30,10 @@ claude plugin install cordo@stackhouse
 /plugin install quizletto@stackhouse
 /plugin install tixanto@stackhouse
 /plugin install cordo@stackhouse
+/plugin install provenix@stackhouse
 ```
 
-On first use (or via `/mcp`), Quizletto, Tixanto, and Cordo open your browser for OAuth 2.1 sign-in.
+On first use (or via `/mcp`), Quizletto, Tixanto, Cordo, and Provenix open your browser for OAuth 2.1 sign-in.
 
 ### Local development & testing
 
@@ -40,6 +43,7 @@ Load a plugin directly during development:
 claude --plugin-dir ./plugins/quizletto
 claude --plugin-dir ./plugins/tixanto
 claude --plugin-dir ./plugins/cordo
+claude --plugin-dir ./plugins/provenix
 ```
 
 Or validate both the marketplace and plugin manifests strictly:
@@ -51,6 +55,7 @@ claude plugin validate --strict .
 claude plugin validate --profile directory --strict ./plugins/quizletto
 claude plugin validate --profile directory --strict ./plugins/tixanto
 claude plugin validate --profile directory --strict ./plugins/cordo
+claude plugin validate --profile directory --strict ./plugins/provenix
 ```
 
 ## Repository layout & adding more StackHouse plugins
