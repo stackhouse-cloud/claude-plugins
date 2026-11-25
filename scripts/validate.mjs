@@ -71,7 +71,7 @@ const ALLOWED_PLUGIN_MANIFEST_KEYS = new Set([
 ]);
 
 const SECRET_TOKEN_RE =
-  /\b(?:qzl_[A-Za-z0-9_-]{8,}|gh[pousr]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,})\b/;
+  /\b(?:qzl_[A-Za-z0-9_-]{8,}|dfsa_[A-Za-z0-9_-]{8,}|gh[pousr]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,})\b/;
 
 async function pathExists(targetPath) {
   try {

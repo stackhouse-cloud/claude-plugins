@@ -69,13 +69,14 @@ claude-plugins/
 ├── plugins/
 │   ├── quizletto/
 │   ├── tixanto/
-│   └── cordo/
+│   ├── cordo/
+│   └── provenix/
 │       ├── .claude-plugin/
 │       │   └── plugin.json
 │       ├── assets/
 │       │   └── logo.svg
 │       ├── skills/
-│       │   └── cordo/
+│       │   └── provenix/
 │       │       └── SKILL.md
 │       ├── .mcp.json
 │       └── README.md

@@ -12,7 +12,7 @@ const REPO_ROOT = path.resolve(
   ".."
 );
 
-test("stackhouse-cloud/claude-plugins repository passes validation and ships quizletto + tixanto + cordo", async () => {
+test("stackhouse-cloud/claude-plugins repository passes validation and ships quizletto + tixanto + cordo + provenix", async () => {
   const result = await validateClaudeMarketplaceRepo(REPO_ROOT);
   assert.deepEqual(result.errors, []);
   assert.equal(result.valid, true);
@@ -114,6 +114,44 @@ test("stackhouse-cloud/claude-plugins repository passes validation and ships qui
     cordoCfg?.headers,
     undefined,
     "cordo uses OAuth 2.1 and should not set static auth headers"
+  );
+
+  const provenixEntry = marketplace.plugins.find((p) => p.name === "provenix");
+  assert.ok(provenixEntry, "expected provenix entry in marketplace.json");
+  assert.equal(provenixEntry.source, "./plugins/provenix");
+  assert.equal(provenixEntry.category, "security");
+
+  const provenixManifest = JSON.parse(
+    await fs.readFile(
+      path.join(
+        REPO_ROOT,
+        "plugins",
+        "provenix",
+        ".claude-plugin",
+        "plugin.json"
+      ),
+      "utf8"
+    )
+  );
+  assert.equal(
+    provenixManifest.userConfig,
+    undefined,
+    "provenix uses OAuth 2.1 and should not require userConfig"
+  );
+
+  const provenixMcp = JSON.parse(
+    await fs.readFile(
+      path.join(REPO_ROOT, "plugins", "provenix", ".mcp.json"),
+      "utf8"
+    )
+  );
+  const provenixCfg = provenixMcp.mcpServers?.provenix ?? provenixMcp.provenix;
+  assert.equal(provenixCfg?.type, "http");
+  assert.equal(provenixCfg?.url, "https://api.provenix.cloud/mcp");
+  assert.equal(
+    provenixCfg?.headers,
+    undefined,
+    "provenix uses OAuth 2.1 and should not set static auth headers"
   );
 });
 
